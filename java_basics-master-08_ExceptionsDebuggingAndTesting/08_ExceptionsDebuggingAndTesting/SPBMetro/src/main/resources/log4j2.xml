@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="WARN">
+
+    <Properties>
+        <Property name="LOG_PATTERN">%d{dd-MM-yyyy HH:mm:ss.SSS} %-5level %logger{36} - %msg%n</Property>
+    </Properties>
+
+    <appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+        </Console>
+
+        <File name="FileForStationsToSearch" fileName="logs/StationsToSearch.log" append="false">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <LevelRangeFilter minLevel="ERROR" maxLevel="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+        </File>
+
+        <File name="FileForStationsToSearchFailed" fileName="logs/StationsToSearchFailed.log" append="false">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <LevelRangeFilter minLevel="ERROR" maxLevel="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
+        </File>
+
+        <File name="FileForExceptions" fileName="logs/Exceptions.log" append="false">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <LevelRangeFilter minLevel="FATAL" maxLevel="FATAL" onMatch="ACCEPT" onMismatch="DENY"/>
+        </File>
+
+    </appenders>
+    <loggers>
+
+        <Root level = "all">
+            <appender-ref ref="FileForStationsToSearch"/>
+            <appender-ref ref="FileForStationsToSearchFailed"/>
+            <appender-ref ref="FileForExceptions"/>
+        </Root>
+
+    </loggers>
+</configuration>
